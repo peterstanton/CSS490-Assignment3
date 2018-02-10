@@ -17,6 +17,7 @@ def recurse(s3, new_bucket, full_path, old_dir):
             recurse(s3, new_bucket, curpath + thisdir, parser.replace('//', '/') + '/')
 
         for file in files:
+            print("Uploading: " + curdir + '/' + file)
             s3.Object(new_bucket, curdir + '/' + file).put(Body=open(curpath + file, "rb"))
         return
     return
@@ -25,12 +26,13 @@ def recurse(s3, new_bucket, full_path, old_dir):
 def getsession():
     return Session(aws_access_key_id=input("Enter your AWS access key: "),
                    aws_secret_access_key=input("Enter your AWS secret key: "),
-                   region_name=input("Enter the AWS region you wish to use: "))
+                   region_name=input("Enter the AWS region you wish to use, try us-west-1: "))
 
 
 mysession = getsession()
 s3 = mysession.resource("s3")
 buckets = s3.buckets.all()
+
 print("These are your account's current S3 buckets: ")
 print("---------------------------------------------")
 for bucket in buckets:
