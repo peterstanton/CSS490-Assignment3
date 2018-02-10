@@ -9,13 +9,14 @@ import os
 
 def recurse(s3, new_bucket, full_path):
     for root, dirs, files in os.walk(full_path):
-        # String gets current local path
         curpath = root + '\\'
         curdir = os.path.basename(os.path.normpath(curpath))
 
+        for dir in dirs:
+            recurse(s3, new_bucket, curpath + dir)
+
         for file in files:
-            # upload file to bucket.
-            s3.Object(new_bucket, "Backup/" + curdir + file).put(Body=open(curpath + file, "rb"))
+            s3.Object(new_bucket, "Backup/" + curdir + '/' + file).put(Body=open(curpath + file, "rb"))
             #                           should concatenate in path
         # Loop through present direectories, should move up ABOVE the for loop, loop through dirs calling recurse.
     pass
