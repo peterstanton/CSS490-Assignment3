@@ -1,20 +1,21 @@
 import boto3
 import os
-from botocore.client import ClientError
-
 
 # The bucket does not exist or you have no access.
 
 # https://stackoverflow.com/questions/26871884/how-can-i-easily-determine-if-a-boto-3-s3-bucket-resource-exists
 
+# I need a way to preserve folder structure by appending stuff to backup.
+
 def recurse(s3, new_bucket, full_path):
     for root, dirs, files in os.walk(full_path):
         # String gets current local path
-        curDir = root + '\\'
+        curpath = root + '\\'
+        curdir = os.path.basename(os.path.normpath(curpath))
 
         for file in files:
             # upload file to bucket.
-            s3.Object(new_bucket, "Backup/" + file).put(Body=open(curDir + file, "rb"))
+            s3.Object(new_bucket, "Backup/" + curdir + file).put(Body=open(curpath + file, "rb"))
             #                           should concatenate in path
         # Loop through present direectories, should move up ABOVE the for loop, loop through dirs calling recurse.
     pass
@@ -28,10 +29,7 @@ for bucket in buckets:
 
 newBucket = input("new bucket name ")
 print("Creating bucket: ", newBucket)
-try:
-    s3.meta.client.head_bucket(Bucket=bucket.name)
-except ClientError:
-    s3.create_bucket(Bucket=newBucket, CreateBucketConfiguration={"LocationConstraint": "us-west-1"})
+s3.create_bucket(Bucket=newBucket, CreateBucketConfiguration={"LocationConstraint": "us-west-1"})
 
 bucketName = newBucket
 fullPath = input("Input directory path ")
