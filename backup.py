@@ -48,4 +48,4 @@ except:
 bucketName = newBucket
 fullPath = input("Input directory path for backup do NOT end with a /: ")
 recurse(s3, bucketName, fullPath, "Backup/")
-input("Press any key to exit.")
+input("Press enter to exit.")
