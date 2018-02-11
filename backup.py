@@ -24,7 +24,7 @@ def recurse(s3, new_bucket, full_path, old_dir):
 
 
 def getsession():
-    return Session(aws_access_key_id=input("Enter your AWS access key: "),
+    return Session(aws_access_key_id=input("Enter your AWS access key ID: "),
                    aws_secret_access_key=input("Enter your AWS secret key: "),
                    region_name=input("Enter the AWS region you wish to use, try us-west-1: "))
 
@@ -46,5 +46,6 @@ except:
     print("This bucket already exists, continuing with existing bucket.")
 
 bucketName = newBucket
-fullPath = input("Input directory path for backup: ")
+fullPath = input("Input directory path for backup do NOT end with a /: ")
 recurse(s3, bucketName, fullPath, "Backup/")
+input("Press any key to exit.")
