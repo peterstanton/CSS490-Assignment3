@@ -16,6 +16,10 @@ def recurse(s3, new_bucket, full_path, old_dir):
             parser = old_dir + '/' + os.path.basename(curdir)
             recurse(s3, new_bucket, curpath + thisdir, parser.replace('//', '/') + '/')
 
+        if not files:
+            print("Uploading: " + curdir + '/')
+            s3.Object(new_bucket, curdir + '/').put(Body="")
+
         for file in files:
             print("Uploading: " + curdir + '/' + file)
             s3.Object(new_bucket, curdir + '/' + file).put(Body=open(curpath + file, "rb"))

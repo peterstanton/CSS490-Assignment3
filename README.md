@@ -9,9 +9,6 @@ This program uses Amazon Web Services' API to backup a given directory to a S3 b
 * IAM users without at least S3 full access security policy.
 
 #### Assumptions
-* Empty folders are not meaningful and can be disregarded. They will be created by AWS if a file is added at their leaf and the backup
-is subsequently run, but there is no benefit to creating branches of empty folders in the bucket.
-
 * Having the backup utility remove deleted files from the S3 bucket, archiving them, or making them invisible in the
 S3 interface is beyond the scope of this assignment.
  
