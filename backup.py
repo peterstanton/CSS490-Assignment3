@@ -1,6 +1,7 @@
 import boto3
 import os
 from boto3 import Session
+import configparser
 
 # https://stackoverflow.com/questions/26871884/how-can-i-easily-determine-if-a-boto-3-s3-bucket-resource-exists
 # https://stackoverflow.com/questions/7872611/in-python-what-is-the-difference-between-pass-and-return

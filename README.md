@@ -39,3 +39,4 @@ S3 interface is beyond the scope of this assignment.
 * https://stackoverflow.com/questions/26871884/how-can-i-easily-determine-if-a-boto-3-s3-bucket-resource-exists
 * https://stackoverflow.com/questions/7872611/in-python-what-is-the-difference-between-pass-and-return
 * Thanks to Roman Zhang for helping me understand Session objects in boto3.
+* Thanks to Pouria Ghadimi for helping me figure out how to upload empty folders.
