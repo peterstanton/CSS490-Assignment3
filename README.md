@@ -16,15 +16,17 @@ is subsequently run, but there is no benefit to creating branches of empty folde
 S3 interface is beyond the scope of this assignment.
  
 ## How-to use this code
+* The below instructions are for Windows
 * Ensure you have at least Python 3.6 installed and configured in your PATH.
 * Ensure you have the Boto3 package installed.
 * Ensure you have an IAM user with S3 access and the credentials accessible.
 * Navigate to the directory where backup.py is located.
-* Run the program from terminal with "python backup.py", or double-click executable.bat
+* Run the program from command prompt with "python backup.py", or double-click executable.bat.
 * Enter your access key ID and secret access key in when prompted.
 * Enter a valid AWS service region.
 * Enter a valid, formatted URI of the form, "C:\Users\Peter\Documents". Do not end the path with a slash.
 * Watch as all files in the folder are recursively uploaded.
+* When finished, press "Enter" to finish the program.
 
 ## Known bugs
 * Due to issues with pyinstaller not being compatible with Windows 10, I could not generate a working .exe.
